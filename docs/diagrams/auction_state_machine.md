@@ -203,3 +203,28 @@ The PhoenixPME Auction Escrow is a state machine that manages the lifecycle of a
 - **Version 1 Suggestion:** Start with a simple, manual escalation to a single, trusted "Protocol Guardian" multisig to keep initial complexity low, with a roadmap to decentralize.
 
 ---
+
+### State: `COMPLETE`
+**Purpose:** The auction has concluded successfully. All obligations are met, and funds are distributed.
+
+**On-Chain Logic:**
+- The seller receives the full payment from escrow.
+- The seller's bond is returned in full.
+- The listing is archived.
+- Both parties can leave immutable, on-chain reputation feedback.
+
+**Valid Triggers & Next States:**
+- This is a terminal state. The state machine ends here.
+
+## 4. System Dependencies & Oracles
+This state machine relies on several external services for real-world verification:
+1.  **Cross-Chain Bridge/Oracle**: Verifies payment lock on XRPL settlement layer.
+2.  **Shipping Oracle**: Validates USPS tracking numbers and delivery status.
+3.  **Dispute Resolution Module**: Handles `DISPUTE_*` states (peer review, expert escalation).
+
+## 5. Version 1.0 Scope Notes
+- Initial launch: USPS, Lower 48 only.
+- Dispute resolution in V1 may use a trusted "Protocol Guardian" multisig for simplicity.
+- Bond and fee parameters should be configurable via governance.
+
+*Document Version: 1.0 | Last Updated: 2026-02-06*
