@@ -33,3 +33,32 @@ The PhoenixPME Auction Escrow is a state machine that manages the lifecycle of a
 - The bonded funds are held in escrow until the auction concludes in `COMPLETE`, `CANCELLED` (by seller before bids), or `DISPUTE_RESOLVED`.
 
 ---
+
+### State: `LISTING_ACTIVE`
+**Purpose:** The auction is live and visible. Buyers can place bids or trigger a "Buy It Now" if the seller has set that option.
+
+**Parameters & Storage:**
+- `reserve_price`: The minimum price to win.
+- `buy_it_now_price`: (Optional) If set by the seller, a price at which any buyer can instantly win.
+- `auction_end_time`: The timestamp when bidding closes.
+- `current_highest_bid` & `current_winning_bidder`: Tracks the leading bid.
+
+**Valid Triggers & Next States:**
+1.  `BUYER_TRIGGERS_BUY_IT_NOW` → `AWAITING_PAYMENT`
+    - **Condition:** `buy_it_now_price` must be set.
+    - **Action:** The triggering buyer must immediately lock the `buy_it_now_price` as payment. The auction closes instantly.
+2.  `BUYER_PLACES_BID` → (Remains in `LISTING_ACTIVE`)
+    - **Condition:** Bid must be > `current_highest_bid` and >= `reserve_price`.
+    - **Action:** The previous highest bid is refunded. The new bid is locked in escrow.
+3.  `AUCTION_TIMER_EXPIRES` → `BIDDING_CLOSED`
+    - **Condition:** `auction_end_time` is reached.
+    - **Action:** Bidding closes. If the `current_highest_bid` >= `reserve_price`, the auction proceeds to settlement. If not, it proceeds to cancellation.
+4.  `SELLER_CANCELS` → `CANCELLED`
+    - **Condition:** Typically only allowed if *no bids have been placed*, to prevent abuse.
+    - **Action:** The seller's bond is returned. Any bids are refunded.
+
+**On-Chain Logic:**
+- The contract must manage the locking and refunding of bid amounts with each new higher bid.
+- If `buy_it_now_price` is triggered, the contract must validate and lock the full payment before transitioning.
+
+---
