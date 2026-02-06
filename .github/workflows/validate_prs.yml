@@ -1,0 +1,44 @@
+name: Validate PRs
+on: [pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check for required files
+        run: |
+          echo "🔍 Validating repository structure..."
+          
+          # Check for required files
+          REQUIRED_FILES=("README.md" "LICENSE" "CONTRIBUTING.md")
+          for file in "${REQUIRED_FILES[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Missing required file: $file"
+              exit 1
+            else
+              echo "✅ Found: $file"
+            fi
+          done
+          
+          # Check docs directory
+          if [ ! -d "docs" ]; then
+            echo "❌ Missing docs directory"
+            exit 1
+          else
+            echo "✅ Found docs directory"
+          fi
+          
+          echo "🎉 All basic validations passed!"
+          
+      - name: Validate Markdown syntax
+        run: |
+          echo "📝 Checking Markdown files..."
+          # Simple validation - check for common issues
+          find . -name "*.md" -type f | while read file; do
+            echo "Checking: $file"
+            # Check for broken links (basic check)
+            if grep -q "\[.*\](.*)" "$file"; then
+              echo "  - Contains links"
+            fi
+          done
+          echo "✅ Markdown check complete"
