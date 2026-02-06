@@ -35,3 +35,20 @@ How technical contributions are evaluated (objectively, no social bias):
 **PR #43: Fix typo in documentation**
 - Fixes technical error: ✓ (3 points)
 **Total: 3 points**
+- Implements spec exactly: ✓ (8 points)
+- Includes tests: ✓ (5 points)
+- Clean documentation: ✓ (3 points)
+**Total: 26 points**
+
+**PR #43: Fix typo in documentation**
+- Fixes technical error: ✓ (3 points)
+**Total: 3 points**
+
+## Tracking & Transparency
+All points are tracked in a public CONTRIBUTORS.md file with:
+- Contributor name/GitHub handle
+- PR numbers and descriptions
+- Points awarded
+- Cumulative total
+
+This creates an objective, merit-based path to compensation through grants.

@@ -48,3 +48,26 @@ No automatic founder/developer take. All compensation is transparent:
 - The DAO Treasury's holdings and all transactions will be fully visible on-chain.
 - Fee changes will only occur via successful community votes.
 - The protocol is a utility. The fee funds development and security; it is not an investment return.
+  - 10%: Community Initiatives
+- **Governance:** Enhanced on-chain voting with delegated representation options.
+- **Goal:** Create a self-sustaining ecosystem where continuous development is funded by protocol usage.
+
+## How Builders Get Paid
+No automatic founder/developer take. All compensation is transparent:
+1.  **Grant Proposal:** A contributor (founder or community dev) submits a public proposal with deliverables, timeline, and grant amount.
+2.  **Community Debate:** The proposal is discussed in forums and chat.
+3.  **On-Chain Vote:** Token holders vote to approve or reject the funding.
+4.  **Milestone Payouts:** Funds are released from the DAO treasury upon verifiable completion of milestones.
+
+## Voting & Tokenomics (Initial Sketch)
+- **Governance Token:** `PHNX` (or similar)
+- **Distribution:** Designed to align long-term incentives. Initial thoughts:
+  - Majority allocated to future users via liquidity mining/participation rewards.
+  - Significant portion to a community treasury, governed by the DAO.
+  - Founders & early contributors subject to long-term vesting.
+- **Voting:** 1 token = 1 vote on snapshot proposals.
+
+## Transparency & Legal Guiding Principles
+- The DAO Treasury's holdings and all transactions will be fully visible on-chain.
+- Fee changes will only occur via successful community votes.
+- The protocol is a utility. The fee funds development and security; it is not an investment return.

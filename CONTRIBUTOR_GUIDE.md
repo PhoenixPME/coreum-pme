@@ -43,3 +43,23 @@ You don't need to wait for a grant to contribute.
 - **Join the Discussion** to help shape the protocol's future.
 
 Building trust through small, public contributions is the best path to larger, funded work.
+- Once refined, the proposal will move to an on-chain snapshot vote for funding approval.
+
+### Step 4: Work & Get Paid
+- Upon vote approval, the grant amount is locked in the DAO treasury.
+- You work publicly, preferably in a fork or branch of the main repo.
+- Upon milestone completion, you submit proof of work. A multi-sig of community trustees releases the funds.
+
+## Current Priority Tracks for Grants
+1.  **Core Smart Contract Development:** Implementing the auction escrow state machine in CosmWasm.
+2.  **Frontend/UI Development:** Building a user-friendly web interface.
+3.  **Oracle Development:** Creating the service to verify USPS tracking.
+4.  **Cross-Chain Infrastructure:** Building the bridge between Coreum (logic) and XRPL (settlement).
+
+## Getting Started Today
+You don't need to wait for a grant to contribute.
+- **Fork the repository** and start experimenting.
+- **Submit a Pull Request** for documentation fixes, design ideas, or small improvements.
+- **Join the Discussion** to help shape the protocol's future.
+
+Building trust through small, public contributions is the best path to larger, funded work.
