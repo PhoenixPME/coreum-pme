@@ -27,7 +27,6 @@ A decentralized protocol for peer-to-peer trading of physical precious metals us
 **Phase 0: Foundation** - Building initial specification and community.
 
 ## 🎯 Current Development Tasks
-
 We're actively seeking contributors! Check our **[PROJECTS.md](PROJECTS.md)** file for detailed task descriptions and how to get involved.
 
 **Priority tasks right now:**
