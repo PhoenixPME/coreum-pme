@@ -1,6 +1,6 @@
 # 🦅 coreum-pme: Phoenix Precious Metals Exchange
 
-**Decentralized P2P precious metals trading on Coreum & XRPL**
+Decentralized P2P precious metals trading on Coreum & XRPL
 
 ## 🚀 Quick Start for Contributors
 1. **Read**: [Async Communication Protocol](docs/ASYNC_COMMUNICATION_PROTOCOL.md) - Our no-talk workflow
@@ -16,20 +16,20 @@
 - [DAO Operations](DAO_OPERATIONS.md) - Governance & fee model (0% → 0.03%)
 - [Tokenomics](TOKENOMICS.md) - Governance token design
 
+## 🏗️ Project Phases
+
+### 🎯 Phase 4: Checkout & Payment Processing - **COMPLETE** ✅
+**Delivered**: 5 components (~1,850 lines)
+**Components**: OrderSummary, ConfirmationStep, PaymentProcessor, ReceiptGenerator, EmailNotifications
+**Features**: Complete checkout flow, multi-wallet payment, receipt generation, email notifications
+**[Full Documentation](docs/PHASE_4_CHECKOUT_PAYMENT.md)**
+
+### ✅ Phase 3: Shipping & Payment - COMPLETE
+### ✅ Phase 2: Auction Interface - COMPLETE
+### ✅ Phase 1: Project Foundation - COMPLETE
+
+## 🔄 Current Phase: Phase 5 - Admin Dashboard
+**Status**: Starting now
+
 ## 💬 Community & Discussion
 **All communication is async and written-only:**
-- **[Discussions](https://github.com/PhoenixPME/coreum-pme/discussions)** - Q&A, ideas, announcements
-- **[Issues](https://github.com/PhoenixPME/coreum-pme/issues)** - Bug reports & feature requests
-- **Email**: gjf20842@gmail.com (for serious collaboration inquiries)
-
-## 🎯 Current Priorities
-1. **Core Smart Contract**: Auction escrow in CosmWasm on Coreum
-2. **Frontend UI**: Basic trading interface with Keplr wallet
-3. **Oracle System**: Manual USPS tracking verification
-4. **Cross-chain Bridge**: Coreum ↔ XRPL settlement
-
-## 📊 Project Summary
-
-## 🏆 Phase 3: Shipping & Payment - COMPLETE ✅
-Delivered 4 components (1400 lines): ShippingSelector, PaymentSelector, CurrencyConverter, EscrowTerms
-Features: rUSD stablecoin, real-time conversion, complete shipping, smart escrow
