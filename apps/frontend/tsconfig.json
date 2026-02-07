@@ -33,8 +33,11 @@
   "include": [
     "next-env.d.ts",
     "types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "lib/**/*.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
@@ -42,6 +45,8 @@
     "node_modules",
     "test-scripts",
     "**/*.test.*",
-    "**/*.spec.*"
+    "**/*.spec.*",
+    "**/test-*",
+    "**/*-test"
   ]
 }
