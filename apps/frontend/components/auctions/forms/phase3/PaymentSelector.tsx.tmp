@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 
+// Re-export types
 export type ShippingCarrier = 'USPS' | 'UPS' | 'FedEx' | 'DHL';
 export type ShippingSpeed = 'Economy' | 'Standard' | 'Expedited' | 'Priority' | 'Overnight';
 export type PackageType = 'Envelope' | 'Pak' | 'Tube' | 'Box' | 'Pallet';
