@@ -8,32 +8,50 @@ export default function WalletConnector() {
   const [leapAvailable, setLeapAvailable] = useState(false);
 
   useEffect(() => {
-    setLeapAvailable(!!window.leap?.getOfflineSigner);
+    // Simpler check - just see if Leap exists
+    setLeapAvailable(!!window.leap);
+    
+    // Check for saved address
+    const saved = localStorage.getItem('phoenix_wallet');
+    if (saved) setAddress(saved);
   }, []);
 
   const connectWallet = async () => {
     if (!leapAvailable) {
-      alert('Leap Wallet Cosmos API not available. Switch to Cosmos mode.');
+      alert('Please install Leap Wallet from https://leapwallet.io');
+      window.open('https://leapwallet.io', '_blank');
       return;
     }
 
     setLoading(true);
     try {
-      // Try to get accounts directly
-      const signer = window.leap.getOfflineSigner('coreum-testnet-1');
-      const accounts = await signer.getAccounts();
-      
-      if (accounts.length > 0) {
-        const addr = accounts[0].address;
-        setAddress(addr);
-        localStorage.setItem('phoenix_wallet', addr);
-        alert('Connected! Address: ' + addr.substring(0, 20) + '...');
+      // Try different Leap APIs
+      if (window.leap.getOfflineSigner) {
+        // Cosmos mode
+        const signer = window.leap.getOfflineSigner('coreum-testnet-1');
+        const accounts = await signer.getAccounts();
+        if (accounts.length > 0) {
+          const addr = accounts[0].address;
+          setAddress(addr);
+          localStorage.setItem('phoenix_wallet', addr);
+        }
+      } else if (window.leap.request) {
+        // Standard mode
+        const accounts = await window.leap.request({
+          method: 'cosmos_requestAccounts',
+          params: { chainId: 'coreum-testnet-1' }
+        });
+        if (accounts && accounts.length > 0) {
+          const addr = accounts[0].address;
+          setAddress(addr);
+          localStorage.setItem('phoenix_wallet', addr);
+        }
       } else {
-        alert('No accounts found in Leap Wallet.');
+        alert('Leap installed but API not found. Try switching to Cosmos mode.');
       }
     } catch (error) {
       console.error('Leap error:', error);
-      alert('Connection failed. Error in console.');
+      alert('Connection failed. Check console for details.');
     } finally {
       setLoading(false);
     }
@@ -44,16 +62,12 @@ export default function WalletConnector() {
     localStorage.removeItem('phoenix_wallet');
   };
 
-  useEffect(() => {
-    const saved = localStorage.getItem('phoenix_wallet');
-    if (saved) setAddress(saved);
-  }, []);
-
   const formatAddress = (addr: string) => {
     if (!addr) return '';
     return addr.substring(0, 10) + '...' + addr.substring(addr.length - 6);
   };
 
+  // Show Install button if Leap not available
   if (!leapAvailable) {
     return (
       <button
@@ -73,6 +87,7 @@ export default function WalletConnector() {
     );
   }
 
+  // Show connection buttons if Leap is available
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
       {address ? (
