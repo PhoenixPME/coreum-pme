@@ -1,8 +1,9 @@
-﻿use cosmwasm_std::Uint128;
+use cosmwasm_std::Uint128;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
 pub struct InstantiateMsg {
     pub admin: String,
 }
@@ -19,6 +20,7 @@ pub enum ExecuteMsg {
     },
     PlaceBid {
         auction_id: u64,
+        amount: Uint128,
     },
     EndAuction {
         auction_id: u64,
