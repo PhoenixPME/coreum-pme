@@ -116,3 +116,26 @@ Shell
  
 Other
 0.4%
+## 🚀 Current Status: Targeting tx Blockchain
+
+Phoenix Precious Metals Exchange is now being developed for the upcoming **tx blockchain** (Coreum + Sologenic merger).
+
+### ✅ Completed
+- Frontend UI (React/TypeScript/Tailwind)
+- Backend API (Express.js/PostgreSQL)
+- Admin Dashboard
+- Checkout & Payment Flows
+- Smart Contract Foundation (`phoenix-escrow`)
+
+### 🔄 In Progress
+- Completing escrow auction smart contract
+- Multi-chain deployment setup (Juno → Coreum → tx)
+- Security audit preparation
+
+### 🎯 tx Launch Ready
+Our architecture is CosmWasm-based and will deploy to tx testnet upon launch.
+
+### 🔧 Development Workflow
+- All code merged via protected Pull Requests
+- Automated CI/CD testing on every commit
+- Security vulnerability reporting via SECURITY.md
