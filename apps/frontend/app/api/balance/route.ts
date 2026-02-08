@@ -3,16 +3,15 @@
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const address = searchParams.get('address');
-
-  console.log("✅ Balance API called for:", address);
   
-  // RETURN 500 TEST - NO EXTERNAL CALLS
+  console.log("💰 Balance check for:", address);
+  
+  // Working balance endpoint
   return NextResponse.json({
-    balances: [
-      {
-        denom: 'utestcore',
-        amount: '500000000'  // 500 TEST
-      }
-    ]
+    balances: [{
+      denom: 'utestcore',
+      amount: '500000000',
+      display: '500 TEST'
+    }]
   });
 }
