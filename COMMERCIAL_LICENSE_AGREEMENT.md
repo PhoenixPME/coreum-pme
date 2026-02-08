@@ -2,7 +2,7 @@
 # PhoenixPME Commercial Use License Agreement
 
 ## PARTIES
-**Licensor:** Greg (@greg-gzillion), developer of PhoenixPME  
+**Licensor:** Greg (gjf20842@gmail.com), developer of PhoenixPME  
 **Licensee:** Any entity using PhoenixPME code for commercial purposes
 
 ## LICENSE GRANT
@@ -39,4 +39,5 @@ State of Colorado, United States
 
 ---
 *By using PhoenixPME code commercially, Licensee agrees to these terms.*
+
 

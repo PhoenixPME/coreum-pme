@@ -1,6 +1,6 @@
 ﻿# PHOENIXPME ROYALTY CONFIGURATION
 # MAINNET ONLY - REAL MONEY
-# Developer: Greg (@greg-gzillion)
+# Developer Contact: gjf20842@gmail.com
 
 MAINNET_WALLET="core1mj58cdfrkc8uyunw2rna3wvkatdjfhd6lwtu0m"
 
@@ -12,11 +12,6 @@ FULL_PHASE=0.03%     # Month 13+
 
 # CURRENT: LAUNCH_PHASE (0% fees)
 
-# WHEN FEES ARE ACTIVE:
-# 100% goes to developer wallet for:
-# - Platform hosting & maintenance
-# - Ongoing development
-# - Legal/regulatory compliance
-# - Future expansion
-
-# SMART CONTRACT WILL USE THIS ADDRESS
+# CONTACT FOR LICENSING:
+Email: gjf20842@gmail.com
+Subject: [PHOENIX LICENSE]

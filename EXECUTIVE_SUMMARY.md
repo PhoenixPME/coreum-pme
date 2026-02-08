@@ -1,8 +1,8 @@
-﻿# EXECUTIVE SUMMARY - UPDATED
+# EXECUTIVE SUMMARY - UPDATED
 
 ## KEY CHANGES:
 1. **MAINNET ONLY** - No testnet addresses for royalties
-2. **PROGRESSIVE FEES** - Start free, scale up: 0% → 0.01% → 0.02% → 0.03%
+2. **PROGRESSIVE FEES** - Start free, scale up: 0% ? 0.01% ? 0.02% ? 0.03%
 3. **SIMPLE STRUCTURE** - One wallet, clear schedule
 
 ## DEVELOPER WALLET:
@@ -16,3 +16,4 @@
 
 ## CURRENT:
 LAUNCH PHASE - 0% FEES
+

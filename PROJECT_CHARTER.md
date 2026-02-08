@@ -1,16 +1,16 @@
-﻿# PROJECT_CHARTER.md
+# PROJECT_CHARTER.md
 # PhoenixPME - Project Charter & Ownership Declaration
 # Effective: February 2026
 
-## 🦅 PROJECT IDENTITY
+## ?? PROJECT IDENTITY
 **Full Name:** Phoenix Precious Metals Exchange (PhoenixPME)  
 **Repository:** https://github.com/PhoenixPME/coreum-pme  
-**Founder & Original Developer:** Greg (GitHub: @greg-gzillion)  
+**Founder & Original Developer:** Greg (Email: gjf20842@gmail.com)  
 **Contact:** gjf20842@gmail.com  
 **Initial Release:** February 2026  
-**Copyright Notice:** © 2026 Greg - All Rights Reserved
+**Copyright Notice:** � 2026 Greg - All Rights Reserved
 
-## 📜 OWNERSHIP DECLARATION
+## ?? OWNERSHIP DECLARATION
 This software represents 7,156+ lines of original code developed exclusively by:
 - Greg (@greg-gzillion) - Primary architect and developer
 - No other contributors as of February 2026
@@ -20,20 +20,20 @@ This software represents 7,156+ lines of original code developed exclusively by:
 - Repository hosted under personal GitHub account
 - All intellectual property originated from single developer
 
-## 🎯 PROJECT PURPOSE
+## ?? PROJECT PURPOSE
 To create a decentralized, trustless exchange for precious metals using blockchain technology, providing:
 1. Secure escrow for gold, silver, platinum, palladium transactions
 2. Transparent pricing and settlement
 3. Global accessibility with regulatory compliance
 4. Fair fee structure supporting sustainable development
 
-## ⚖️ LEGAL STATUS
+## ?? LEGAL STATUS
 - **Primary License:** GPL-3.0 (Open Source)
 - **Commercial Rights:** Reserved to founder
 - **Trademark:** "PhoenixPME" (pending registration)
 - **Domain:** PhoenixPME.io (recommended acquisition)
 
-## 🏛️ GOVERNANCE STRUCTURE
+## ??? GOVERNANCE STRUCTURE
 **Tier 1: Founder Authority** (Greg @greg-gzillion)
 - Final architectural decisions
 - License modifications
@@ -50,7 +50,7 @@ To create a decentralized, trustless exchange for precious metals using blockcha
 - Bug reports and testing
 - Documentation improvements
 
-## 💰 REVENUE MODEL
+## ?? REVENUE MODEL
 **Phase 1 (Launch):** 0% fees - User acquisition  
 **Phase 2 (Growth):** 0.01% transaction fee  
 **Phase 3 (Sustainable):** 0.03% transaction fee
@@ -61,14 +61,14 @@ To create a decentralized, trustless exchange for precious metals using blockcha
 - 20% Legal/compliance/insurance
 - 10% Founder compensation for initial development
 
-## 📅 DEVELOPMENT TIMELINE
+## ?? DEVELOPMENT TIMELINE
 - **Feb 2026:** Phase 7 Complete - Working auction system
 - **Q2 2026:** Coreum mainnet deployment
 - **Q3 2026:** Multi-chain expansion (XRPL, Ethereum)
 - **Q4 2026:** Mobile application release
 - **2027:** Regulatory compliance and licensing
 
-## 📞 CONTACT & DISPUTE RESOLUTION
+## ?? CONTACT & DISPUTE RESOLUTION
 **Primary Contact:** gjf20842@gmail.com  
 **Legal Inquiries:** Include "LEGAL" in subject line  
 **Business Partnerships:** Include "PARTNERSHIP" in subject line  
@@ -76,3 +76,5 @@ To create a decentralized, trustless exchange for precious metals using blockcha
 
 ---
 *This charter establishes the foundational principles, ownership, and governance of PhoenixPME. All participants and users acknowledge these terms by using the software.*
+
+

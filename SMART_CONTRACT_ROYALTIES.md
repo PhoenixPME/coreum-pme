@@ -1,4 +1,4 @@
-﻿# SMART CONTRACT - ROYALTY SETUP
+# SMART CONTRACT - ROYALTY SETUP
 
 ## DEVELOPER WALLET (MAINNET):
 `core1mj58cdfrkc8uyunw2rna3wvkatdjfhd6lwtu0m`
@@ -23,3 +23,4 @@ When fees are active:
 
 ## CURRENT STATUS:
 LAUNCH PHASE - 0% FEES (FREE)
+
