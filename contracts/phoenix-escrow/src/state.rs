@@ -1,6 +1,6 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use cosmwasm_std::{Addr, Uint128, Timestamp};
+use cosmwasm_std::Uint128;
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct Auction {
@@ -34,7 +34,6 @@ pub enum AuctionStatus {
 }
 
 // Storage
-use cosmwasm_std::StdResult;
 use cw_storage_plus::{Item, Map};
 
 pub const DEVELOPER_WALLET: &str = "coreum1v4f8s9z4h7j0q3x6k5w8n2r1t0y7u6i5o4p3l2k9j8h7g6f5";

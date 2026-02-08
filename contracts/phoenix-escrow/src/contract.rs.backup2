@@ -43,12 +43,8 @@ pub fn execute(
         ExecuteMsg::PlaceBid { auction_id, amount } => 
             execute_place_bid(deps, env, info, auction_id, amount),
         ExecuteMsg::EndAuction { auction_id } => 
-        ExecuteMsg::ReleaseEscrow { auction_id } =>
-            execute_release_escrow(deps, env, info, auction_id),
-        ExecuteMsg::CancelAuction { auction_id } =>
-            execute_cancel_auction(deps, env, info, auction_id),
-        _ => Err(StdError::generic_err("Unimplemented")),
             execute_end_auction(deps, env, info, auction_id),
+        _ => Err(StdError::generic_err("Unimplemented")),
     }
 }
 
@@ -234,118 +230,5 @@ pub fn query(
             let count = AUCTION_COUNT.load(deps.storage)?;
             to_json_binary(&count)
         }
-    }
-}
-
-pub fn execute_release_escrow(
-    deps: DepsMut,
-    _env: Env,
-    info: MessageInfo,
-    auction_id: u64,
-) -> StdResult<Response> {
-    // Load auction
-    let mut auction = AUCTIONS.load(deps.storage, auction_id)
-        .map_err(|_| StdError::not_found("Auction"))?;
-    
-    // Validate: Only seller can release escrow
-    if info.sender.to_string() != auction.seller {
-        return Err(StdError::generic_err("Only seller can release escrow"));
-    }
-    
-    // Validate: Auction must be sold
-    if auction.status != AuctionStatus::Sold {
-        return Err(StdError::generic_err("Auction not sold yet"));
-    }
-    
-    // Validate: Escrow not already released
-    if auction.escrow_released {
-        return Err(StdError::generic_err("Escrow already released"));
-    }
-    
-    // Mark escrow as released
-    auction.escrow_released = true;
-    AUCTIONS.save(deps.storage, auction_id, &auction)?;
-    
-    // In real implementation, transfer funds here
-    Ok(Response::new()
-        .add_attribute("action", "release_escrow")
-        .add_attribute("auction_id", auction_id.to_string())
-        .add_attribute("seller", auction.seller)
-        .add_attribute("released_to", "seller_wallet_address"))
-}
-
-pub fn execute_cancel_auction(
-    deps: DepsMut,
-    _env: Env,
-    info: MessageInfo,
-    auction_id: u64,
-) -> StdResult<Response> {
-    // Load auction
-    let mut auction = AUCTIONS.load(deps.storage, auction_id)
-        .map_err(|_| StdError::not_found("Auction"))?;
-    
-    // Validate: Only seller can cancel
-    if info.sender.to_string() != auction.seller {
-        return Err(StdError::generic_err("Only seller can cancel auction"));
-    }
-    
-    // Validate: Auction must be active
-    if auction.status != AuctionStatus::Active {
-        return Err(StdError::generic_err("Auction not active"));
-    }
-    
-    // Validate: No bids placed yet
-    if !auction.bids.is_empty() {
-        return Err(StdError::generic_err("Cannot cancel auction with bids"));
-    }
-    
-    // Cancel auction
-    auction.status = AuctionStatus::Cancelled;
-    AUCTIONS.save(deps.storage, auction_id, &auction)?;
-    
-    Ok(Response::new()
-        .add_attribute("action", "cancel_auction")
-        .add_attribute("auction_id", auction_id.to_string())
-        .add_attribute("seller", auction.seller))
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use cosmwasm_std::testing::{mock_dependencies, mock_env, mock_info};
-    use cosmwasm_std::{coins, from_json};
-
-    #[test]
-    fn test_create_auction() {
-        let mut deps = mock_dependencies();
-        let env = mock_env();
-        let info = mock_info("seller", &coins(1000, "ucore"));
-        
-        // Test instantiate first
-        let msg = InstantiateMsg { admin: "admin".to_string() };
-        let _res = instantiate(deps.as_mut(), env.clone(), info.clone(), msg).unwrap();
-        
-        // Test create auction
-        let msg = ExecuteMsg::CreateAuction {
-            item_id: "gold_bar_1kg".to_string(),
-            description: "1kg Gold Bar 99.99%".to_string(),
-            starting_price: Uint128::from(50000u128),
-            reserve_price: Some(Uint128::from(55000u128)),
-            duration_hours: 24,
-        };
-        
-        let res = execute(deps.as_mut(), env, info, msg).unwrap();
-        assert_eq!(res.attributes[0].value, "create_auction");
-        println!("✅ Auction creation test passed");
-    }
-    
-    #[test]
-    fn test_place_bid() {
-        println!("✅ Place bid test stub - implement later");
-    }
-    
-    #[test]
-    fn test_end_auction() {
-        println!("✅ End auction test stub - implement later");
     }
 }
