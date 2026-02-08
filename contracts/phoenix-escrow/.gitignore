@@ -1,7 +1,6 @@
 ﻿# Rust/Cargo
 /target/
 **/*.rs.bk
-Cargo.lock
 
 # WASM builds
 *.wasm
