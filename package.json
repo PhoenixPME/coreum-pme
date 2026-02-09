@@ -4,8 +4,10 @@
   "description": "PhoenixPME - Precious Metals Exchange on Coreum",
   "main": "index.js",
   "scripts": {
+    "check": "./scripts/quick-check.sh",
     "check-consistency": "./scripts/check-consistency.sh",
     "verify": "./verify_structure_fixed.sh && ./scripts/check-consistency.sh",
+    "full-verify": "./verify_structure_fixed.sh && ./scripts/check-consistency.sh && ./scripts/quick-check.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -13,10 +15,15 @@
     "coreum",
     "auction",
     "precious-metals",
-    "defi"
+    "defi",
+    "insurance"
   ],
   "author": "Greg <gjf20842@gmail.com>",
   "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PhoenixPME/coreum-pme"
+  },
   "dependencies": {},
   "devDependencies": {}
 }

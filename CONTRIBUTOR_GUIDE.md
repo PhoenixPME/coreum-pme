@@ -1,7 +1,7 @@
 # Contributor Guide: How to Work & Get Funded
 
 ## The PhoenixPME Funding Model
-This project aims to become self-sustaining through a tiny protocol fee (0.01% → 1.1%), governed by the community. This means contributors are paid via **transparent grants**, not equity or speculative tokens.
+This project aims to become self-sustaining through a 1.1% protocol fee, governed by the community. This means contributors are paid via **transparent grants**, not equity or speculative tokens.
 
 ## Path for Technical Contributors
 

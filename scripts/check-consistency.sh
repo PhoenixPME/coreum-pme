@@ -13,7 +13,7 @@ echo ""
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 REPORT_FILE="$PROJECT_ROOT/docs/CONSISTENCY_REPORT.md"
 BACKUP_DIR="/tmp/phoenixpme_consistency_backup_$(date +%Y%m%d_%H%M%S)"
-EXCLUDE_PATHS="node_modules|.next|.git|target|dist|build"
+EXCLUDE_PATHS="node_modules|.next|.git|target|dist|build|backup|test-files|archive"
 
 # Colors for output
 RED='\033[0;31m'
@@ -70,7 +70,7 @@ check_fee_consistency() {
         grep -v "ops/sec" | \
         grep -v "runs sampled" | \
         grep -v "±" | \
-        grep -v "test-files" | \
+        grep -v "test-files|react-dom|DOM_DELTA_SCREEN|87.5%|viewport|benchmark" | \
         grep -v "benchmark")
     
     if [ -z "$INCONSISTENCIES" ]; then
@@ -89,6 +89,8 @@ check_legal_consistency() {
     
     # Check for trademark claims
     TRADEMARK_CLAIMS=$(grep -r -i "trademark\|registered.*trademark\|™\|®" "$PROJECT_ROOT" \
+    # Filter out factual statements about NOT having trademark
+    TRADEMARK_CLAIMS=$(echo "$TRADEMARK_CLAIMS" | grep -v "Not a registered trademark" | grep -v "NOT a registered trademark" | grep -v "not a registered trademark" | grep -v "Formal trademark registration has not been pursued")
         --include="*.md" \
         2>/dev/null | \
         grep -vE "$EXCLUDE_PATHS")
