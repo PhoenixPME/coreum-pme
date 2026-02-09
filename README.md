@@ -77,3 +77,9 @@ Attach files by dragging & dropping, selecting or pasting them.
 
 ## Fee Model (Single Source of Truth)
 See: legal/FEE_MODEL_SIMPLE.md
+
+## Commercial Licensing
+For business use, see: [legal/COMMERCIAL_LICENSE.md](legal/COMMERCIAL_LICENSE.md)
+- 1.1% fee automatically collected via smart contract
+- 100% to Insurance Pool, Developer: 10% ownership stake
+- Free for non-commercial use under GPL v3.0
