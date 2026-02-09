@@ -14,26 +14,29 @@ Blockchain-based auction platform for physical precious metals with integrated i
   - Seller-set grading premiums
   - Coreum blockchain settlement
 
-### 2. Fee Distribution & Escrow Structure
-Every transaction collects 1.1% which goes to a **single RLUSD escrow account** on XRPL:
+### 2. Fee Distribution
+**Auction Platform Fees (1.1%):**
+- **100% goes to insurance pool** (building capital for future insurance)
+- **Developer stake**: 10% ownership of accumulated insurance pool
 
-**From each 1.1% fee collected:**
-- **Entire 1.1%** → Single RLUSD escrow pool
-- **Developer entitlement**: 10% of total escrow pool
-- **Effective developer allocation**: ~0.2% of transaction volume
-  - 0.1% direct allocation
-  - Additional ~0.1% from 10% pool entitlement
+**Future Insurance Transaction Fees:**
+- **10% to Developer** (per insurance transaction)
+- **90% to Insurance Pool** (per insurance transaction)
 
 ### 3. Insurance Module (Future)
-- **Activation**: When RLUSD escrow reaches sufficient capital
-- **Purpose**: Provide blockchain-based insurance for precious metals
-- **Control**: Developer retains 10% entitlement from pool
-- **Rate**: Will be competitive with traditional insurance (exact % TBD)
+- **Activation**: When insurance pool reaches sufficient capital
+- **Developer Stake**: 10% ownership of insurance pool
+- **Insurance Fee**: Will be competitive percentage (TBD)
+- **Developer Share**: 10% of all insurance transaction fees
 
-## Technical Implementation
-- **Single escrow account**: All 1.1% fees accumulate here
-- **Developer access**: 10% entitlement via smart contract logic
-- **Insurance capital**: Remaining 90% funds future insurance program
+## Financial Structure
+**Phase 1: Building Capital (Current)**
+
+
+## Implementation Details
+- **Single escrow account**: All auction fees accumulate in insurance pool
+- **Developer ownership**: 10% stake in total insurance pool
+- **Future insurance**: Developer receives 10% of all insurance transaction fees
 - **Transparency**: All allocations verifiable on XRPL ledger
 
 ## Technical Architecture
@@ -46,7 +49,7 @@ Every transaction collects 1.1% which goes to a **single RLUSD escrow account** 
 - ✅ Auction platform functional (http://localhost:3000)
 - ✅ Backend API operational (http://localhost:3001)
 - ✅ Insurance module services ready (ports 3200-3204)
-- 🔄 RLUSD escrow: Building capital (0 → 50,000 RLUSD goal)
+- 🔄 Insurance pool: Building capital (0 → 50,000 RLUSD goal)
 - 🔄 Smart contract deployment: In progress
 
 ## Development
@@ -62,8 +65,12 @@ Every transaction collects 1.1% which goes to a **single RLUSD escrow account** 
 - `legal/` - License and commercial terms
 
 ## Notes
-- Platform fee (1.1%) is mandatory in all implementations
-- All fees accumulate in single RLUSD escrow on XRPL
-- Developer entitled to 10% of escrow pool (~0.2% effective rate)
-- Insurance module activates automatically when RLUSD escrow reaches threshold
+- Auction platform fee (1.1%) builds insurance capital
+- Developer owns 10% stake in insurance pool
+- When insurance launches: developer gets 10% of insurance transaction fees
+- All fees escrowed in RLUSD on XRPL
+- Insurance activates automatically when pool reaches threshold
 - Built for Coreum blockchain, compatible with upcoming tx (Coreum + Sologenic)
+Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page.
+No file chosen
+Attach files by dragging & dropping, selecting or pasting them.
