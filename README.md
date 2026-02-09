@@ -8,6 +8,7 @@ Blockchain-based auction platform for physical precious metals with integrated i
 ### 1. Auction Platform
 - **Purpose**: Peer-to-peer trading of physical precious metals
 - **Fee**: 1.1% per successful transaction
+For detailed fee model, see: docs/FEE_MODEL.md
 - **Features**:
   - Buy It Now & bidding functionality
   - Real-time market data integration
@@ -15,11 +16,14 @@ Blockchain-based auction platform for physical precious metals with integrated i
   - Coreum blockchain settlement
 
 ### 2. Fee Distribution
+For detailed fee model, see: docs/FEE_MODEL.md
 **Auction Platform Fees (1.1%):**
+For detailed fee model, see: docs/FEE_MODEL.md
 - **100% goes to insurance pool** (building capital for future insurance)
 - **Developer stake**: 10% ownership of accumulated insurance pool
 
 **Future Insurance Transaction Fees:**
+For detailed fee model, see: docs/FEE_MODEL.md
 - **10% to Developer** (per insurance transaction)
 - **90% to Insurance Pool** (per insurance transaction)
 
@@ -27,6 +31,7 @@ Blockchain-based auction platform for physical precious metals with integrated i
 - **Activation**: When insurance pool reaches sufficient capital
 - **Developer Stake**: 10% ownership of insurance pool
 - **Insurance Fee**: Will be competitive percentage (TBD)
+For detailed fee model, see: docs/FEE_MODEL.md
 - **Developer Share**: 10% of all insurance transaction fees
 
 ## Financial Structure
@@ -76,6 +81,7 @@ No file chosen
 Attach files by dragging & dropping, selecting or pasting them.
 
 ## Fee Model (Single Source of Truth)
+For detailed fee model, see: docs/FEE_MODEL.md
 See: legal/FEE_MODEL_SIMPLE.md
 
 
