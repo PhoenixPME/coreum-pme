@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏛️ Phoenix PME | Blockchain Precious Metals Auctions</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --silver: #C0C0C0;
+            --platinum: #E5E4E2;
+            --palladium: #B4B4B4;
+            --rhodium: #F2F2F2;
+            --copper: #B87333;
+            --primary: #1a237e;
+            --success: #4CAF50;
+            --danger: #F44336;
+            --warning: #FF9800;
+            --info: #2196F3;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0c2461 0%, #1a237e 100%);
+            color: white;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold) 0%, #f7ef8a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .blockchain-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(86, 204, 242, 0.2);
+            color: #56CCF2;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            border: 1px solid rgba(86, 204, 242, 0.3);
+        }
+        
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: var(--gold);
+            color: #000;
+            transform: translateY(-2px);
+        }
+        
+        /* Auction Grid */
+        .auction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .auction-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .auction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: var(--gold);
+        }
+        
+        .auction-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--dark) 0%, #34495e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .auction-content {
+            padding: 20px;
+        }
+        
+        .auction-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+        
+        .auction-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .auction-metal {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
+        .auction-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .auction-time {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Bidding Interface */
+        .bid-interface {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .bid-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .bid-form {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        /* Seller Dashboard */
+        .seller-dashboard {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(198, 155, 42, 0.1) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Grading Premiums */
+        .grading-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        .grading-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, #283593 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-block {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, #c19a3a 100%);
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success) 0%, #2E7D32 100%);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger) 0%, #C62828 100%);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+        
+        /* Blockchain Features */
+        .blockchain-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Fee Structure */
+        .fee-structure {
+            background: linear-gradient(135deg, var(--gold) 0%, #f7ef8a 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            color: #000;
+            text-align: center;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .logo { font-size: 3rem; }
+            .container { padding: 10px; }
+            .auction-grid { grid-template-columns: 1fr; }
+        }
+        
+        /* Countdown Timer */
+        .countdown {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .countdown-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 50px;
+        }
+        
+        .countdown-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        /* Premium Badge */
+        .premium-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+        
+        /* Bid History */
+        .bid-history {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        
+        .bid-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">🏛️</div>
+            <h1>Phoenix Precious Metals Exchange</h1>
+            <p class="tagline">Blockchain-Powered Auctions • 1.5% Platform Fee</p>
+            <div class="blockchain-badge">
+                <i class="fas fa-link"></i>
+                <span>Powered by Coreum Blockchain</span>
+            </div>
+            <p style="margin-top: 15px; opacity: 0.9;">
+                Buy, Sell & Auction Gold, Silver, Platinum, Palladium, Rhodium & Copper
+            </p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('active-auctions')">
+                <i class="fas fa-gavel"></i> Active Auctions
+            </button>
+            <button class="nav-tab" onclick="showTab('buy-now')">
+                <i class="fas fa-shopping-cart"></i> Buy Now
+            </button>
+            <button class="nav-tab" onclick="showTab('sell-item')">
+                <i class="fas fa-plus-circle"></i> Sell Item
+            </button>
+            <button class="nav-tab" onclick="showTab('blockchain-features')">
+                <i class="fas fa-link"></i> Blockchain
+            </button>
+        </div>
+
+        <!-- Active Auctions Tab -->
+        <div id="active-auctions" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2><i class="fas fa-gavel"></i> Live Precious Metals Auctions</h2>
+                <div style="font-size: 0.9rem; opacity: 0.8;">
+                    <i class="fas fa-sync-alt"></i> Updates every 30 seconds
+                </div>
+            </div>
+
+            <div class="auction-grid">
+                <!-- Auction 1: Gold Coin -->
+                <div class="auction-card">
+                    <div class="premium-badge">PCGS MS70</div>
+                    <div class="auction-image" style="background: linear-gradient(135deg, #D4AF37 0%, #b8941f 100%);">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="auction-content">
+                        <div class="auction-title">2024 American Gold Eagle 1oz</div>
+                        <div class="auction-meta">
+                            <span class="auction-metal" style="background: rgba(212, 175, 55, 0.2); color: #D4AF37;">
+                                <i class="fas fa-gem"></i> GOLD
+                            </span>
+                            <span><i class="far fa-user"></i> BullionDealerPro</span>
+                        </div>
+                        
+                        <div class="auction-price">
+                            $2,150 <span style="font-size: 1rem; opacity: 0.7;">/ oz</span>
+                        </div>
+                        
+                        <div style="margin: 15px 0;">
+                            <div style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">
+                                Current Bid: <span style="font-weight: bold; color: var(--gold);">$2,245.50</span>
+                            </div>
+                            <div style="font-size: 0.9rem; opacity: 0.8;">
+                                Buy Now Price: <span style="font-weight: bold; color: var(--success);">$2,350.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="auction-time">
+                            <div style="font-size: 0.9rem; margin-bottom: 10px;">Auction ends in:</div>
+                            <div class="countdown" id="countdown-1">
+                                <div class="countdown-item">
+                                    <div class="countdown-value">02</div>
+                                    <div class="countdown-label">Days</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value">12</div>
+                                    <div class="countdown-label">Hours</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value">45</div>
+                                    <div class="countdown-label">Mins</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grading-badges">
+                            <span class="grading-badge">
+                                <i class="fas fa-certificate" style="color: var(--gold);"></i>
+                                PCGS MS70
+                            </span>
+                            <span class="grading-badge">
+                                <i class="fas fa-star" style="color: var(--gold);"></i>
+                                25% Premium
+                            </span>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-block" onclick="openBidModal('gold-eagle')" style="margin-top: 20px;">
+                            <i class="fas fa-gavel"></i> Place Bid
+                        </button>
+                        <button class="btn btn-success btn-block" onclick="buyNow('gold-eagle', 2350)" style="margin-top: 10px;">
+                            <i class="fas fa-bolt"></i> Buy Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Auction 2: Silver Bar -->
+                <div class="auction-card">
+                    <div class="auction-image" style="background: linear-gradient(135deg, #C0C0C0 0%, #a0a0a0 100%);">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="auction-content">
+                        <div class="auction-title">100oz Johnson Matthey Silver Bar</div>
+                        <div class="auction-meta">
+                            <span class="auction-metal" style="background: rgba(192, 192, 192, 0.2); color: #C0C0C0;">
+                                <i class="fas fa-gem"></i> SILVER
+                            </span>
+                            <span><i class="far fa-user"></i> SilverStacker</span>
+                        </div>
+                        
+                        <div class="auction-price">
+                            $81.50 <span style="font-size: 1rem; opacity: 0.7;">/ oz</span>
+                        </div>
+                        
+                        <div style="margin: 15px 0;">
+                            <div style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">
+                                Current Bid: <span style="font-weight: bold; color: var(--gold);">$8,250.00</span>
+                            </div>
+                            <div style="font-size: 0.9rem; opacity: 0.8;">
+                                Buy Now Price: <span style="font-weight: bold; color: var(--success);">$8,500.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="auction-time">
+                            <div style="font-size: 0.9rem; margin-bottom: 10px;">Auction ends in:</div>
+                            <div class="countdown" id="countdown-2">
+                                <div class="countdown-item">
+                                    <div class="countdown-value">01</div>
+                                    <div class="countdown-label">Day</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value">06</div>
+                                    <div class="countdown-label">Hours</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value">30</div>
+                                    <div class="countdown-label">Mins</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grading-badges">
+                            <span class="grading-badge">
+                                <i class="fas fa-industry"></i>
+                                Industrial Grade
+                            </span>
+                            <span class="grading-badge">
+                                <i class="fas fa-tag"></i>
+                                2.5% Premium
+                            </span>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-block" onclick="openBidModal('silver-bar')" style="margin-top: 20px;">
+                            <i class="fas fa-gavel"></i> Place Bid
+                        </button>
+                        <button class="btn btn-success btn-block" onclick="buyNow('silver-bar', 8500)" style="margin-top: 10px;">
+                            <i class="fas fa-bolt"></i> Buy Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Auction 3: Platinum Coin -->
+                <div class="auction-card">
+                    <div class="premium-badge">NGC PF70</div>
+                    <div class="auction-image" style="background: linear-gradient(135deg, #E5E4E2 0%, #c5c4c2 100%); color: #000;">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="auction-content">
+                        <div class="auction-title">Platinum American Eagle 1oz Proof</div>
+                        <div class="auction-meta">
+                            <span class="auction-metal" style="background: rgba(229, 228, 226, 0.2); color: #E5E4E2;">
+                                <i class="fas fa-gem"></i> PLATINUM
+                            </span>
+                            <span><i class="far fa-user"></i> PlatinumCollector</span>
+                        </div>
+                        
+                        <div class="auction-price">
+                            $1,095 <span style="font-size: 1rem; opacity: 0.7;">/ oz</span>
+                        </div>
+                        
+                        <div style="margin: 15px 0;">
+                            <div style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px;">
+                                Current Bid: <span style="font-weight: bold; color: var(--gold);">$1,250.00</span>
+                            </div>
+                            <div style="font-size: 0.9rem; opacity: 0.8;">
+                                Buy Now Price: <span style="font-weight: bold; color: var(--success);">$1,350.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="auction-time">
+                            <div style="font-size: 0.9rem; margin-bottom: 10px;">Auction ends in:</div>
+                            <div class="countdown" id="countdown-3">
+                                <div class="countdown-item">
+                                    <div class="countdown-value">03</div>
+                                    <div class="countdown-label">Days</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value">18</div>
+                                    <div class="countdown-label">Hours</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value">20</div>
+                                    <div class="countdown-label">Mins</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grading-badges">
+                            <span class="grading-badge">
+                                <i class="fas fa-certificate" style="color: var(--info);"></i>
+                                NGC PF70
+                            </span>
+                            <span class="grading-badge">
+                                <i class="fas fa-star" style="color: var(--gold);"></i>
+                                15% Premium
+                            </span>
+                            <span class="grading-badge">
+                                <i class="fas fa-gem"></i>
+                                Proof Finish
+                            </span>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-block" onclick="openBidModal('platinum-proof')" style="margin-top: 20px;">
+                            <i class="fas fa-gavel"></i> Place Bid
+                        </button>
+                        <button class="btn btn-success btn-block" onclick="buyNow('platinum-proof', 1350)" style="margin-top: 10px;">
+                            <i class="fas fa-bolt"></i> Buy Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buy Now Tab -->
+        <div id="buy-now" class="tab-content" style="display: none;">
+            <h2><i class="fas fa-shopping-cart"></i> Buy Now Marketplace</h2>
+            <p style="margin-bottom: 30px; opacity: 0.9;">Instant purchase at fixed prices with 1.5% platform fee</p>
+            
+            <div class="auction-grid">
+                <!-- Buy Now Items -->
+                <div class="auction-card">
+                    <div class="auction-image" style="background: linear-gradient(135deg, #D4AF37 0%, #b8941f 100%);">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="auction-content">
+                        <div class="auction-title">1oz Gold Bar (PAMP Suisse)</div>
+                        <div class="auction-meta">
+                            <span class="auction-metal" style="background: rgba(212, 175, 55, 0.2); color: #D4AF37;">
+                                <i class="fas fa-gem"></i> GOLD
+                            </span>
+                            <span><i class="fas fa-check-circle" style="color: var(--success);"></i> In Stock</span>
+                        </div>
+                        
+                        <div class="auction-price" style="color: var(--success);">
+                            $2,150.00
+                        </div>
+                        
+                        <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 10px;">
+                            <div style="font-size: 0.9rem; margin-bottom: 5px;">
+                                Platform Fee (1.5%): <span style="color: var(--gold);">$32.25</span>
+                            </div>
+                            <div style="font-size: 0.9rem;">
+                                Total: <span style="font-weight: bold;">$2,182.25</span>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-success btn-block" onclick="buyNowItem('pamp-gold', 2150)">
+                            <i class="fas fa-bolt"></i> Buy Now - $2,182.25
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="auction-card">
+                    <div class="auction-image" style="background: linear-gradient(135deg, #C0C0C0 0%, #a0a0a0 100%);">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <div class="auction-content">
+                        <div class="auction-title">10oz Silver Bar (Royal Canadian Mint)</div>
+                        <div class="auction-meta">
+                            <span class="auction-metal" style="background: rgba(192, 192, 192, 0.2); color: #C0C0C0;">
+                                <i class="fas fa-gem"></i> SILVER
+                            </span>
+                            <span><i class="fas fa-check-circle" style="color: var(--success);"></i> In Stock</span>
+                        </div>
+                        
+                        <div class="auction-price" style="color: var(--success);">
+                            $815.00
+                        </div>
+                        
+                        <div style="margin: 15px 0; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 10px;">
+                            <div style="font-size: 0.9rem; margin-bottom: 5px;">
+                                Platform Fee (1.5%): <span style="color: var(--gold);">$12.23</span>
+                            </div>
+                            <div style="font-size: 0.9rem;">
+                                Total: <span style="font-weight: bold;">$827.23</span>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-success btn-block" onclick="buyNowItem('rcm-silver', 815)">
+                            <i class="fas fa-bolt"></i> Buy Now - $827.23
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sell Item Tab -->
+        <div id="sell-item" class="tab-content" style="display: none;">
+            <div class="seller-dashboard">
+                <h2><i class="fas fa-plus-circle"></i> List Your Precious Metals</h2>
+                <p style="margin-bottom: 30px; opacity: 0.9;">Auction or fixed price • Set grading premiums • 1.5% platform fee</p>
+                
+                <div class="bid-form">
+                    <div>
+                        <div class="form-group">
+                            <label><i class="fas fa-gem"></i> Metal Type</label>
+                            <select class="form-control" id="sellMetal">
+                                <option value="GOLD">Gold</option>
+                                <option value="SILVER">Silver</option>
+                                <option value="PLATINUM">Platinum</option>
+                                <option value="PALLADIUM">Palladium</option>
+                                <option value="RHODIUM">Rhodium</option>
+                                <option value="COPPER">Copper</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-balance-scale"></i> Weight (oz)</label>
+                            <input type="number" class="form-control" id="sellWeight" placeholder="e.g., 1.0" step="0.01">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-tag"></i> Item Title</label>
+                            <input type="text" class="form-control" id="sellTitle" placeholder="e.g., 2024 Gold Eagle 1oz">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="form-group">
+                            <label><i class="fas fa-gavel"></i> Sale Type</label>
+                            <select class="form-control" id="sellType" onchange="toggleSellOptions()">
+                                <option value="auction">Auction (Bidding)</option>
+                                <option value="fixed">Fixed Price (Buy Now)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Auction Options -->
+                        <div id="auctionOptions">
+                            <div class="form-group">
+                                <label><i class="fas fa-flag"></i> Starting Bid ($)</label>
+                                <input type="number" class="form-control" id="startBid" placeholder="e.g., 2000">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><i class="fas fa-bolt"></i> Buy Now Price ($) - Optional</label>
+                                <input type="number" class="form-control" id="buyNowPrice" placeholder="e.g., 2200">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><i class="far fa-clock"></i> Auction Duration</label>
+                                <select class="form-control" id="auctionDuration">
+                                    <option value="1">1 Day</option>
+                                    <option value="3" selected>3 Days</option>
+                                    <option value="7">7 Days</option>
+                                    <option value="14">14 Days</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Fixed Price Options -->
+                        <div id="fixedOptions" style="display: none;">
+                            <div class="form-group">
+                                <label><i class="fas fa-dollar-sign"></i> Fixed Price ($)</label>
+                                <input type="number" class="form-control" id="fixedPrice" placeholder="e.g., 2150">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grading Premiums -->
+                <div style="margin: 30px 0;">
+                    <h3><i class="fas fa-certificate"></i> Grading & Premiums</h3>
+                    <p style="opacity: 0.8; margin-bottom: 15px;">Add premiums for graded or premium products</p>
+                    
+                    <div class="grading-badges" id="gradingSelection">
+                        <span class="grading-badge selectable" onclick="toggleGrading(this, 'PCGS')">
+                            <i class="fas fa-certificate"></i> PCGS
+                        </span>
+                        <span class="grading-badge selectable" onclick="toggleGrading(this, 'NGC')">
+                            <i class="fas fa-certificate"></i> NGC
+                        </span>
+                        <span class="grading-badge selectable" onclick="toggleGrading(this, 'ANACS')">
+                            <i class="fas fa-certificate"></i> ANACS
+                        </span>
+                        <span class="grading-badge selectable" onclick="toggleGrading(this, 'MS70')">
+                            <i class="fas fa-star"></i> MS70/PR70
+                        </span>
+                        <span class="grading-badge selectable" onclick="toggleGrading(this, 'PROOF')">
+                            <i class="fas fa-gem"></i> Proof
+                        </span>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label><i class="fas fa-percentage"></i> Custom Premium %</label>
+                        <input type="number" class="form-control" id="customPremium" placeholder="e.g., 15 for 15% premium" min="0" max="100" step="0.5">
+                    </div>
+                </div>
+                
+                <!-- Blockchain Escrow -->
+                <div style="margin: 30px 0; padding: 20px; background: rgba(86, 204, 242, 0.1); border-radius: 10px; border: 1px solid rgba(86, 204, 242, 0.3);">
+                    <h3><i class="fas fa-link"></i> Blockchain Escrow</h3>
+                    <p style="opacity: 0.9; margin-bottom: 15px;">
+                        Funds held in smart contract escrow until delivery confirmed. 
+                        1.5% platform fee deducted automatically.
+                    </p>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="useEscrow" checked>
+                        <label for="useEscrow">Use blockchain escrow for secure transactions</label>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" style="padding: 18px 40px; font-size: 1.2rem;" onclick="listItem()">
+                    <i class="fas fa-rocket"></i> List Item on Blockchain
+                </button>
+                
+                <div id="listingPreview" style="margin-top: 30px; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 10px; display: none;">
+                    <!-- Preview will appear here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Blockchain Features Tab -->
+        <div id="blockchain-features" class="tab-content" style="display: none;">
+            <h2><i class="fas fa-link"></i> Blockchain-Powered Auctions</h2>
+            <p style="margin-bottom: 30px; opacity: 0.9;">Secure, transparent, and efficient precious metals trading</p>
+            
+            <div class="blockchain-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Smart Contract Escrow</h3>
+                    <p>Funds held securely in blockchain escrow until both parties confirm transaction completion.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Transparent Bidding</h3>
+                    <p>All bids and transactions recorded on-chain for complete transparency and auditability.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Instant Settlement</h3>
+                    <p>Automated settlement through smart contracts eliminates delays and intermediary risks.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>1.5% Platform Fee</h3>
+                    <p>Industry-lowest fees automatically calculated and distributed through smart contracts.</p>
+                </div>
+            </div>
+            
+            <div class="fee-structure">
+                <h2 style="color: #000; margin-bottom: 20px;">💰 Transparent Fee Structure</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;">
+                    <div style="background: white; padding: 25px; border-radius: 15px; text-align: center;">
+                        <h3 style="color: #000;">🏛️ Phoenix PME</h3>
+                        <div style="font-size: 2.5rem; color: var(--success); font-weight: bold; margin: 15px 0;">1.5%</div>
+                        <p style="color: #666;">Per successful transaction</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 15px; text-align: center;">
+                        <h3 style="color: #000;">🔗 Blockchain Fees</h3>
+                        <div style="font-size: 2.5rem; color: var(--info); font-weight: bold; margin: 15px 0;">~$0.10</div>
+                        <p style="color: #666;">Per transaction (Coreum network)</p>
+                    </div>
+                    
+                    <div style="background: white; padding: 25px; border-radius: 15px; text-align: center;">
+                        <h3 style="color: #000;">💎 No Hidden Fees</h3>
+                        <div style="font-size: 2.5rem; color: var(--gold); font-weight: bold; margin: 15px 0;">0%</div>
+                        <p style="color: #666;">Listing fees, withdrawal fees, or monthly fees</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bid Modal -->
+        <div id="bidModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center;">
+            <div style="background: rgba(30, 30, 46, 0.95); backdrop-filter: blur(20px); border-radius: 20px; padding: 40px; max-width: 500px; width: 90%; border: 1px solid rgba(212, 175, 55, 0.3);">
+                <h2 id="modalTitle" style="color: var(--gold); margin-bottom: 20px;"></h2>
+                
+                <div class="form-group">
+                    <label>Your Bid Amount ($)</label>
+                    <input type="number" class="form-control" id="bidAmount" placeholder="Enter bid amount">
+                </div>
+                
+                <div class="form-group">
+                    <label>Bid Increment</label>
+                    <select class="form-control" id="bidIncrement">
+                        <option value="10">$10</option>
+                        <option value="25">$25</option>
+                        <option value="50" selected>$50</option>
+                        <option value="100">$100</option>
+                        <option value="250">$250</option>
+                    </select>
+                </div>
+                
+                <div style="margin: 20px 0; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span>Platform Fee (1.5%):</span>
+                        <span id="bidFee" style="color: var(--gold);">--</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                        <span>Total if you win:</span>
+                        <span id="bidTotal">--</span>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 15px; margin-top: 25px;">
+                    <button class="btn btn-outline" style="flex: 1;" onclick="closeBidModal()">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary" style="flex: 1;" onclick="submitBid()">
+                        <i class="fas fa-paper-plane"></i> Submit Bid
+                    </button>
+                </div>
+                
+                <div id="bidHistory" class="bid-history" style="margin-top: 25px;">
+                    <h4 style="margin-bottom: 15px;">Recent Bids</h4>
+                    <!-- Bid history will appear here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>🏛️ Phoenix Precious Metals Exchange • Blockchain Auction Platform</p>
+            <p style="margin-top: 15px; font-size: 0.9rem;">
+                Backend API: <a href="http://localhost:3001/health" style="color: var(--gold);">http://localhost:3001/health</a> • 
+                Frontend UI: <a href="http://localhost:3000" style="color: var(--gold);">http://localhost:3000</a>
+            </p>
+            <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
+                Buy, sell, and auction precious metals with 1.5% platform fees • Powered by Coreum Blockchain
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Current auction data
+        let currentAuctions = [
+            {
+                id: 'gold-eagle',
+                title: '2024 American Gold Eagle 1oz',
+                metal: 'GOLD',
+                currentPrice: 2145.50,
+                buyNowPrice: 2350.00,
+                endTime: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000 + 12 * 60 * 60 * 1000 + 45 * 60 * 1000),
+                seller: 'BullionDealerPro',
+                grading: ['PCGS MS70'],
+                premium: 25
+            },
+            {
+                id: 'silver-bar',
+                title: '100oz Johnson Matthey Silver Bar',
+                metal: 'SILVER',
+                currentPrice: 8250.00,
+                buyNowPrice: 8500.00,
+                endTime: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000 + 6 * 60 * 60 * 1000 + 30 * 60 * 1000),
+                seller: 'SilverStacker',
+                grading: ['Industrial Grade'],
+                premium: 2.5
+            },
+            {
+                id: 'platinum-proof',
+                title: 'Platinum American Eagle 1oz Proof',
+                metal: 'PLATINUM',
+                currentPrice: 1250.00,
+                buyNowPrice: 1350.00,
+                endTime: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000 + 18 * 60 * 60 * 1000 + 20 * 60 * 1000),
+                seller: 'PlatinumCollector',
+                grading: ['NGC PF70', 'Proof Finish'],
+                premium: 15
+            }
+        ];
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Phoenix PME Auction Platform Loading...');
+            
+            // Start countdown timers
+            updateCountdowns();
+            setInterval(updateCountdowns, 1000);
+            
+            // Initialize bid amount calculator
+            document.getElementById('bidAmount').addEventListener('input', calculateBidTotal);
+            
+            // Load initial data
+            loadActiveAuctions();
+        });
+        
+        // Tab navigation
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).style.display = 'block';
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+        
+        // Update countdown timers
+        function updateCountdowns() {
+            currentAuctions.forEach((auction, index) => {
+                const now = new Date().getTime();
+                const distance = auction.endTime.getTime() - now;
+                
+                if (distance < 0) {
+                    // Auction ended
+                    document.getElementById(`countdown-${index + 1}`).innerHTML = `
+                        <div style="color: var(--danger); font-weight: bold; padding: 10px;">
+                            AUCTION ENDED
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                
+                const countdownElement = document.getElementById(`countdown-${index + 1}`);
+                if (countdownElement) {
+                    countdownElement.innerHTML = `
+                        <div class="countdown-item">
+                            <div class="countdown-value">${days.toString().padStart(2, '0')}</div>
+                            <div class="countdown-label">Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value">${hours.toString().padStart(2, '0')}</div>
+                            <div class="countdown-label">Hours</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value">${minutes.toString().padStart(2, '0')}</div>
+                            <div class="countdown-label">Mins</div>
+                        </div>
+                    `;
+                }
+            });
+        }
+        
+        // Load active auctions
+        function loadActiveAuctions() {
+            console.log('Loading active auctions...');
+            // In a real implementation, this would fetch from the backend API
+        }
+        
+        // Bid modal functions
+        let currentAuctionId = null;
+        
+        function openBidModal(auctionId) {
+            currentAuctionId = auctionId;
+            const auction = currentAuctions.find(a => a.id === auctionId);
+            
+            if (!auction) return;
+            
+            document.getElementById('modalTitle').textContent = `Place Bid: ${auction.title}`;
+            document.getElementById('bidAmount').value = (auction.currentPrice + 50).toFixed(2);
+            
+            // Load bid history
+            loadBidHistory(auctionId);
+            
+            // Calculate initial bid total
+            calculateBidTotal();
+            
+            // Show modal
+            document.getElementById('bidModal').style.display = 'flex';
+        }
+        
+        function closeBidModal() {
+            document.getElementById('bidModal').style.display = 'none';
+            currentAuctionId = null;
+        }
+        
+        function calculateBidTotal() {
+            const bidAmount = parseFloat(document.getElementById('bidAmount').value) || 0;
+            const fee = bidAmount * 0.015;
+            const total = bidAmount + fee;
+            
+            document.getElementById('bidFee').textContent = `$${fee.toFixed(2)}`;
+            document.getElementById('bidTotal').textContent = `$${total.toFixed(2)}`;
+        }
+        
+        function submitBid() {
+            const bidAmount = parseFloat(document.getElementById('bidAmount').value);
+            const auction = currentAuctions.find(a => a.id === currentAuctionId);
+            
+            if (!bidAmount || bidAmount <= auction.currentPrice) {
+                alert(`Bid must be higher than current price: $${auction.currentPrice.toFixed(2)}`);
+                return;
+            }
+            
+            // In a real implementation, this would submit to blockchain
+            alert(`✅ Bid submitted!\n\nAmount: $${bidAmount.toFixed(2)}\nFee (1.5%): $${(bidAmount * 0.015).toFixed(2)}\nTotal: $${(bidAmount * 1.015).toFixed(2)}\n\nYour bid will be processed on the blockchain.`);
+            
+            // Update local data
+            auction.currentPrice = bidAmount;
+            
+            // Add to bid history
+            addBidToHistory(bidAmount);
+            
+            // Close modal
+            closeBidModal();
+            
+            // Refresh display
+            loadActiveAuctions();
+        }
+        
+        function loadBidHistory(auctionId) {
+            // Mock bid history
+            const bidHistory = [
+                { bidder: 'GoldHunter', amount: 2240.00, time: '2 hours ago' },
+                { bidder: 'InvestorX', amount: 2225.00, time: '4 hours ago' },
+                { bidder: 'BullionMaster', amount: 2200.00, time: '1 day ago' },
+                { bidder: 'PreciousTrader', amount: 2150.00, time: '2 days ago' }
+            ];
+            
+            const historyElement = document.getElementById('bidHistory');
+            historyElement.innerHTML = '<h4 style="margin-bottom: 15px;">Recent Bids</h4>';
+            
+            bidHistory.forEach(bid => {
+                historyElement.innerHTML += `
+                    <div class="bid-item">
+                        <div>
+                            <strong>${bid.bidder}</strong>
+                            <div style="font-size: 0.8rem; opacity: 0.7;">${bid.time}</div>
+                        </div>
+                        <div style="font-weight: bold; color: var(--gold);">
+                            $${bid.amount.toFixed(2)}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        function addBidToHistory(amount) {
+            // In a real implementation, this would update blockchain
+            console.log(`Bid added to history: $${amount}`);
+        }
+        
+        // Buy Now functions
+        function buyNow(auctionId, price) {
+            const auction = currentAuctions.find(a => a.id === auctionId);
+            const fee = price * 0.015;
+            const total = price + fee;
+            
+            if (confirm(`Buy Now: ${auction.title}\n\nPrice: $${price.toFixed(2)}\nFee (1.5%): $${fee.toFixed(2)}\nTotal: $${total.toFixed(2)}\n\nConfirm purchase?`)) {
+                alert(`✅ Purchase successful!\n\nItem: ${auction.title}\nTotal: $${total.toFixed(2)}\n\nTransaction will be processed via blockchain escrow.`);
+                
+                // In a real implementation, this would trigger blockchain transaction
+                console.log(`Buy now purchase: ${auctionId} for $${total}`);
+            }
+        }
+        
+        function buyNowItem(itemId, price) {
+            const fee = price * 0.015;
+            const total = price + fee;
+            
+            if (confirm(`Buy Now\n\nPrice: $${price.toFixed(2)}\nFee (1.5%): $${fee.toFixed(2)}\nTotal: $${total.toFixed(2)}\n\nConfirm purchase?`)) {
+                alert(`✅ Purchase successful!\n\nTotal: $${total.toFixed(2)}\n\nTransaction will be processed via blockchain escrow.`);
+            }
+        }
+        
+        // Seller functions
+        function toggleSellOptions() {
+            const sellType = document.getElementById('sellType').value;
+            
+            if (sellType === 'auction') {
+                document.getElementById('auctionOptions').style.display = 'block';
+                document.getElementById('fixedOptions').style.display = 'none';
+            } else {
+                document.getElementById('auctionOptions').style.display = 'none';
+                document.getElementById('fixedOptions').style.display = 'block';
+            }
+        }
+        
+        let selectedGradings = [];
+        
+        function toggleGrading(element, grading) {
+            element.classList.toggle('selected');
+            
+            if (element.classList.contains('selected')) {
+                selectedGradings.push(grading);
+                element.style.background = 'var(--gold)';
+                element.style.color = '#000';
+            } else {
+                const index = selectedGradings.indexOf(grading);
+                if (index > -1) selectedGradings.splice(index, 1);
+                element.style.background = 'rgba(255, 255, 255, 0.15)';
+                element.style.color = 'white';
+            }
+        }
+        
+        function listItem() {
+            const metal = document.getElementById('sellMetal').value;
+            const weight = parseFloat(document.getElementById('sellWeight').value);
+            const title = document.getElementById('sellTitle').value;
+            const sellType = document.getElementById('sellType').value;
+            const customPremium = parseFloat(document.getElementById('customPremium').value) || 0;
+            const useEscrow = document.getElementById('useEscrow').checked;
+            
+            if (!weight || !title) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            let listingDetails = '';
+            
+            if (sellType === 'auction') {
+                const startBid = parseFloat(document.getElementById('startBid').value);
+                const buyNowPrice = parseFloat(document.getElementById('buyNowPrice').value);
+                const duration = document.getElementById('auctionDuration').value;
+                
+                if (!startBid) {
+                    alert('Please enter a starting bid');
+                    return;
+                }
+                
+                listingDetails = `
+                    <h3 style="color: var(--gold); margin-bottom: 15px;">Auction Listing Preview</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <strong>Metal:</strong> ${metal}<br>
+                            <strong>Weight:</strong> ${weight} oz<br>
+                            <strong>Starting Bid:</strong> $${startBid.toFixed(2)}
+                        </div>
+                        <div>
+                            <strong>Buy Now:</strong> ${buyNowPrice ? `$${buyNowPrice.toFixed(2)}` : 'Not set'}<br>
+                            <strong>Duration:</strong> ${duration} days<br>
+                            <strong>Platform Fee:</strong> 1.5%
+                        </div>
+                    </div>
+                `;
+            } else {
+                const fixedPrice = parseFloat(document.getElementById('fixedPrice').value);
+                
+                if (!fixedPrice) {
+                    alert('Please enter a fixed price');
+                    return;
+                }
+                
+                listingDetails = `
+                    <h3 style="color: var(--gold); margin-bottom: 15px;">Fixed Price Listing Preview</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <strong>Metal:</strong> ${metal}<br>
+                            <strong>Weight:</strong> ${weight} oz<br>
+                            <strong>Price:</strong> $${fixedPrice.toFixed(2)}
+                        </div>
+                        <div>
+                            <strong>Platform Fee:</strong> $${(fixedPrice * 0.015).toFixed(2)}<br>
+                            <strong>You Receive:</strong> $${(fixedPrice * 0.985).toFixed(2)}<br>
+                            <strong>Escrow:</strong> ${useEscrow ? 'Yes' : 'No'}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            if (selectedGradings.length > 0 || customPremium > 0) {
+                listingDetails += `
+                    <div style="margin: 15px 0; padding: 15px; background: rgba(212, 175, 55, 0.1); border-radius: 10px;">
+                        <strong>Grading & Premiums:</strong><br>
+                        ${selectedGradings.map(g => `• ${g}`).join('<br>')}
+                        ${customPremium > 0 ? `<br>• Custom Premium: ${customPremium}%` : ''}
+                    </div>
+                `;
+            }
+            
+            if (useEscrow) {
+                listingDetails += `
+                    <div style="margin: 15px 0; padding: 15px; background: rgba(86, 204, 242, 0.1); border-radius: 10px; border: 1px solid rgba(86, 204, 242, 0.3);">
+                        <i class="fas fa-link"></i> <strong>Blockchain Escrow Enabled</strong><br>
+                        Funds will be held in smart contract until delivery confirmed.
+                    </div>
+                `;
+            }
+            
+            document.getElementById('listingPreview').innerHTML = listingDetails;
+            document.getElementById('listingPreview').style.display = 'block';
+            
+            // Scroll to preview
+            document.getElementById('listingPreview').scrollIntoView({ behavior: 'smooth' });
+            
+            // In a real implementation, this would submit to blockchain
+            setTimeout(() => {
+                alert(`✅ Item listed successfully!\n\n"${title}" has been listed on the blockchain.\n\nBuyers can now view and bid on your item.`);
+            }, 500);
+        }
+        
+        // Initialize tab switching
+        showTab('active-auctions');
+    </script>
+</body>
+</html>
