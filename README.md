@@ -78,3 +78,20 @@ Attach files by dragging & dropping, selecting or pasting them.
 ## Fee Model (Single Source of Truth)
 See: legal/FEE_MODEL_SIMPLE.md
 
+
+## Legal Status Facts
+
+### Copyright:
+- Code is original work by Greg (@greg-gzillion)
+- Copyright exists automatically
+- Licensed under GNU GPL v3.0
+
+### Trademark:
+- "PhoenixPME" name is in use
+- Not a registered trademark
+- Consider registration for formal protection
+
+### Commercial Model:
+- Open source code: GPL v3.0
+- Potential revenue: Hosted service, consulting, custom development
+- Competition: Others can fork under GPL terms
