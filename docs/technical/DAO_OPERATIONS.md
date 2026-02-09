@@ -9,9 +9,9 @@ PhoenixPME will be governed by its users through a Decentralized Autonomous Orga
 - **Governance:** Informal, guided by the founding team and early contributors.
 - **Exit Condition:** Move to Phase 2 once consistent monthly trading volume exceeds **$10,000**.
 
-## Phase 2: Sustainable Operations (Proposed Fee: 0.01%)
+## Phase 2: Sustainable Operations (Proposed Fee: 1.1%)
 - **Trigger:** A successful on-chain DAO vote.
-- **Fee Structure:** A 0.01% fee applied to the settlement amount of each successful trade.
+- **Fee Structure:** A 1.1% fee applied to the settlement amount of each successful trade.
 - **Treasury Allocation (Governed by Vote):**
   - 50%: Security (Smart contract audits, bug bounties)
   - 30%: Protocol Maintenance (Oracle server costs, infrastructure)
@@ -19,9 +19,9 @@ PhoenixPME will be governed by its users through a Decentralized Autonomous Orga
 - **Governance:** Formal on-chain voting using governance tokens.
 - **Goal:** Fund essential security and maintenance to protect user funds.
 
-## Phase 3: Growth & Development (Proposed Fee: 0.03%)
+## Phase 3: Growth & Development (Proposed Fee: 1.1%)
 - **Trigger:** A successful on-chain DAO vote, proposed once volume justifies expanded development.
-- **Fee Structure:** A 0.03% fee applied to the settlement amount.
+- **Fee Structure:** A 1.1% fee applied to the settlement amount.
 - **Treasury Allocation (Example Proposal):**
   - 40%: Development Grants (Payment for building new features)
   - 30%: Security & Operations

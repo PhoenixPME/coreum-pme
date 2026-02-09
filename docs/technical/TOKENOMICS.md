@@ -28,7 +28,7 @@ A `PHNX` token would serve one primary purpose: **governance rights** over the P
 
 ## Governance Powers
 Holding `PHNX` tokens would allow you to vote on:
-1.  **Fee Changes:** Proposals to initiate or adjust the protocol fee (0% → 0.01% → 0.03%).
+1.  **Fee Changes:** Proposals to initiate or adjust the protocol fee (0% → 1.1% → 1.1%).
 2.  **Treasury Spending:** All grant proposals and budget allocations.
 3.  **Technical Upgrades:** Changes to core protocol parameters or smart contracts.
 4.  **Community Initiatives:** Funding for marketing, events, or educational content.
@@ -48,7 +48,7 @@ This is a starting point for discussion. The final tokenomics will be:
 
 ## Governance Powers
 Holding `PHNX` tokens would allow you to vote on:
-1.  **Fee Changes:** Proposals to initiate or adjust the protocol fee (0% → 0.01% → 0.03%).
+1.  **Fee Changes:** Proposals to initiate or adjust the protocol fee (0% → 1.1% → 1.1%).
 2.  **Treasury Spending:** All grant proposals and budget allocations.
 3.  **Technical Upgrades:** Changes to core protocol parameters or smart contracts.
 4.  **Community Initiatives:** Funding for marketing, events, or educational content.

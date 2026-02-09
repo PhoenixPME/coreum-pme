@@ -51,7 +51,7 @@ gantt
 - Volume reaches \$100,000/month
 
 ### Milestone 4 (December 2026)
-- Volume threshold for 0.01% fee proposal
+- Volume threshold for 1.1% fee proposal
 - Multiple asset support (gold, silver, platinum)
 - Mobile app beta release
 

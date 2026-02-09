@@ -35,7 +35,7 @@
 **Purpose:** Display smart contract terms
 **Features:**
 - 3-party escrow smart contract explanation
-- 3 service levels: Basic (1.5%), Standard (2.5%), Premium (3.5%)
+- 3 service levels: Basic (1.1%), Standard (1.1%), Premium (1.1%)
 - Buyer/Seller/Escrow agent address display
 - Release conditions with toggle selection
 - Dispute resolution process

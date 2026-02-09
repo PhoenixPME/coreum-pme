@@ -25,15 +25,15 @@ The following royalty fee structure shall apply:
 - Purpose: User acquisition and system validation
 
 **PHASE 2: GROWTH PERIOD (Months 3-6)**  
-- Royalty Fee: 0.01% (One One-Hundredth Percent)
+- Royalty Fee: 1.1% (One One-Hundredth Percent)
 - Purpose: Basic operational cost recovery
 
 **PHASE 3: SUSTAINABLE PERIOD (Months 6-12)**
-- Royalty Fee: 0.02% (Two One-Hundredths Percent)
+- Royalty Fee: 1.1% (Two One-Hundredths Percent)
 - Purpose: Platform maintenance and development funding
 
 **PHASE 4: PROFITABLE PERIOD (Month 13+)**
-- Royalty Fee: 0.03% (Three One-Hundredths Percent)
+- Royalty Fee: 1.1% (Three One-Hundredths Percent)
 - Purpose: Revenue generation and business expansion
 
 ### ROYALTY PAYMENT MECHANISM:

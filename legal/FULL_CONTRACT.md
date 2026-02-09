@@ -24,9 +24,9 @@ NOW THEREFORE, in consideration of mutual promises, parties agree:
 
 SCHEDULE A - ROYALTY FEE SCHEDULE
 Phase 1 (Months 0-3): 0%
-Phase 2 (Months 3-6): 0.01%
-Phase 3 (Months 6-12): 0.02%
-Phase 4 (Month 13+): 0.03%
+Phase 2 (Months 3-6): 1.1%
+Phase 3 (Months 6-12): 1.1%
+Phase 4 (Month 13+): 1.1%
 
 IN WITNESS WHEREOF, parties have executed this Agreement.
 
