@@ -101,3 +101,11 @@ See: legal/FEE_MODEL_SIMPLE.md
 - Open source code: GPL v3.0
 - Potential revenue: Hosted service, consulting, custom development
 - Competition: Others can fork under GPL terms
+
+## 🪙 TESTUSD Token - Live on Coreum Testnet
+
+We've successfully deployed the TESTUSD token as the foundation for our precious metals trading protocol.
+
+- **Documentation:** [TESTUSD Token Creation](docs/TESTUSD_TOKEN_CREATION.md)
+- **Transaction:** `37EC84596A02687D8F77E7D92538F518CCE847D8B4A325732B911FD0B0D35E9A`
+- **Token:** TESTUSD (6 decimals, 1000 initial supply)
